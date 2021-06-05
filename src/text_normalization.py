@@ -50,13 +50,13 @@ def normalize_texts(texts, to_stem=False):
     tk = RegexpTokenizer(r"\w+")
     stopwords = set(nltk.corpus.stopwords.words("portuguese"))
     for t in texts:
-        raw_text = remove_accents(t.lower())  # steps 1 and 2
-        tokens = tk.tokenize(raw_text)  # step 3
+        raw_text = remove_accents(t.lower())
+        tokens = tk.tokenize(raw_text)
         processed_text = ""
         for tkn in tokens:
-            if tkn.isalpha() and tkn not in stopwords and len(tkn) > 3:  # step 4
+            if tkn.isalpha() and tkn not in stopwords and len(tkn) > 3:
                 if to_stem:
-                    tkn = stemmer.stem(tkn)  # step 5
+                    tkn = stemmer.stem(tkn)
                 processed_text += tkn + " "
         normal_texts.append(processed_text[:-1])
     return normal_texts
