@@ -12,4 +12,8 @@ def tfidf_texts(texts, ngram_range=(1, 1)):
 
 def hashing_texts(texts, n_features, ngram_range=(1, 1)):
     corpus = normalize_texts(texts)
-    return HashingVectorizer(n_features=n_features, ngram_range=ngram_range).fit_transform(corpus).toarray()
+    return (
+        HashingVectorizer(n_features=n_features, ngram_range=ngram_range)
+        .fit_transform(corpus)
+        .toarray()
+    )
