@@ -9,6 +9,7 @@ from sklearn.model_selection import train_test_split
 
 import pymongo
 import pandas as pd
+import random
 
 from .text_normalization import normalize_texts
 
@@ -52,6 +53,7 @@ class active_learning:
         for csv_f in list_texts:
             df = pd.read_csv(csv_f, usecols=["text"])
             list_dict_texts = df.to_dict("records")
+            random.shuffle(list_dict_texts)
             for dic_text in list_dict_texts:
                 normalized_text = normalize_texts([dic_text["text"]])
                 self.doc_collection.insert_one(
